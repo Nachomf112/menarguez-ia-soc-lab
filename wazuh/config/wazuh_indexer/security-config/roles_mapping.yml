@@ -1,0 +1,11 @@
+cat > roles_mapping.yml << 'EOF'
+_meta:
+  type: "rolesmapping"
+  config_version: 2
+
+all_access:
+  backend_roles:
+    - admin
+  users:
+    - admin
+EOF

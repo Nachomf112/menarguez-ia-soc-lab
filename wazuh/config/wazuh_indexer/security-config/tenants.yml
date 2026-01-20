@@ -1,0 +1,8 @@
+cat > tenants.yml << 'EOF'
+_meta:
+  type: "tenants"
+  config_version: 2
+
+global_tenant:
+  reserved: true
+EOF

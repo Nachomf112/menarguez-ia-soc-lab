@@ -1,0 +1,12 @@
+cat > internal_users.yml << 'EOF'
+_meta:
+  type: "internalusers"
+  config_version: 2
+
+admin:
+  hash: "$2y$12$4m1UO1Yf4uC6tC3kF0sFVeX1eA1hM7YJ4jXQnTjFQ2FhT8eE7x9Wu"
+  reserved: true
+  backend_roles:
+    - admin
+  description: "Wazuh admin user"
+EOF

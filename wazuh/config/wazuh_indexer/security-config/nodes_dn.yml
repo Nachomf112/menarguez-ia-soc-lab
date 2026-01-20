@@ -1,0 +1,5 @@
+cat > nodes_dn.yml << 'EOF'
+_meta:
+  type: "nodesdn"
+  config_version: 2
+EOF

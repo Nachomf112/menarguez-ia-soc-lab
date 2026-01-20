@@ -1,0 +1,5 @@
+cat > action_groups.yml << 'EOF'
+_meta:
+  type: "actiongroups"
+  config_version: 2
+EOF

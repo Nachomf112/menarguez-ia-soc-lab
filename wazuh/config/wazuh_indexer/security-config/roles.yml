@@ -1,0 +1,20 @@
+cat > roles.yml << 'EOF'
+_meta:
+  type: "roles"
+  config_version: 2
+
+all_access:
+  reserved: true
+  cluster_permissions:
+    - "*"
+  index_permissions:
+    - index_patterns:
+        - "*"
+      allowed_actions:
+        - "*"
+  tenant_permissions:
+    - tenant_patterns:
+        - "*"
+      allowed_actions:
+        - "kibana_all_write"
+EOF
