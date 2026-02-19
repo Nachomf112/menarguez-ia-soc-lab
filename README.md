@@ -112,6 +112,9 @@ Layer 4: Analyst
 
 ## 📸 Evidencias (Wazuh)
 
+### Architecture_diagram.png
+![architecture_diagram.png](docs/images/architecture_diagram.png)
+
 ### Dashboard overview
 ![Wazuh dashboard overview](docs/images/dashboard_overview.png)
 
