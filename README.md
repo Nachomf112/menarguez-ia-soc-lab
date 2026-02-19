@@ -35,11 +35,12 @@ Laboratorio práctico de **Security Operations Center (SOC)** orientado a **Blue
 ## 🏗 Arquitectura (alto nivel)
 ## 🔎 Attack Scenarios
 
-- Wazuh SIEM (Manager + Indexer + Dashboard)
-- Ubuntu Endpoint (Wazuh Agent)
-- Kali Linux (Attacker Machine)
-- Generación controlada de eventos
-- Documentación estructurada por escenarios
+🎯 Objective
+🖥 Command executed
+📊 Detection observed (Rule IDs)
+🧠 MITRE Mapping
+📈 Analysis
+🛡 Response considerations
 
 ---
 
