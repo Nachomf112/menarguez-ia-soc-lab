@@ -49,7 +49,7 @@ Laboratorio práctico de **Security Operations Center (SOC)** orientado a **Blue
 
 ```
                      ┌──────────────────────────────┐
-                     │        🛡️ WAZUH MANAGER        │
+                     │        🛡️ WAZUH MANAGER      │
                      │  Manager + Indexer + UI      │
                      │------------------------------│
                      │  • Log analysis              │
@@ -64,11 +64,11 @@ Laboratorio práctico de **Security Operations Center (SOC)** orientado a **Blue
         │                           │                           │
         │                           │                           │
 ┌─────────────────┐        ┌─────────────────┐         ┌─────────────────┐
-│ 🐧 Ubuntu Target │        │ 🔥 Kali Attacker│         │ 📊 Analyst View │
+│ 🐧 Ubuntu Target │        │ 🔥 Kali Attacker│        │ 📊 Analyst View │
 │-----------------│        │-----------------│         │-----------------│
-│ • SSH Service    │◄───────┤ • Nmap          │         │ • Event Search  │
-│ • PAM Logs       │  Scan   │ • Brute Force   │         │ • Rule IDs      │
-│ • System Logs    │        │ • Enumeration    │         │ • MITRE Mapping │
+│ • SSH Service    │◄───────┤ • Nmap          │        │ • Event Search  │
+│ • PAM Logs       │  Scan   │ • Brute Force   │       │ • Rule IDs      │
+│ • System Logs    │        │ • Enumeration    │       │ • MITRE Mapping │
 └─────────────────┘        └─────────────────┘         └─────────────────┘
 ```
 
