@@ -1,4 +1,9 @@
 # 🛡 Menarguez-IA SOC Lab
+![Wazuh](https://img.shields.io/badge/SIEM-Wazuh-blue)
+![MITRE ATT&CK](https://img.shields.io/badge/MITRE-ATT%26CK-red)
+![Blue Team](https://img.shields.io/badge/Focus-Blue%20Team-blueviolet)
+![Status](https://img.shields.io/badge/Status-Active-success)
+
 
 Laboratorio práctico de **Security Operations Center (SOC)** orientado a **Blue Team**, diseñado para simular un entorno empresarial real y entrenar tareas de detección, análisis y respuesta a incidentes.
 
