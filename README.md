@@ -64,11 +64,11 @@ Laboratorio práctico de **Security Operations Center (SOC)** orientado a **Blue
         │                           │                           │
         │                           │                           │
 ┌─────────────────┐        ┌─────────────────┐         ┌─────────────────┐
-│ 🐧 Ubuntu Target │        │ 🔥 Kali Attacker│        │ 📊 Analyst View │
-│-----------------│        │-----------------│         │-----------------│
-│ • SSH Service    │◄───────┤ • Nmap          │        │ • Event Search  │
-│ • PAM Logs       │  Scan   │ • Brute Force   │       │ • Rule IDs      │
-│ • System Logs    │        │ • Enumeration    │       │ • MITRE Mapping │
+│ 🐧 Ubuntu Target│        │ 🔥 Kali Attacker│        │ 📊 Analyst View │
+│-----------------│        │-----------------│        │------------------│
+│ • SSH Service   │◄───────┤ • Nmap          │        │ • Event Search   │
+│ • PAM Logs      │  Scan  │ • Brute Force   │        │ • Rule IDs       │
+│ • System Logs   │        │ • Enumeration   │        │ • MITRE Mapping  │
 └─────────────────┘        └─────────────────┘         └─────────────────┘
 ```
 
