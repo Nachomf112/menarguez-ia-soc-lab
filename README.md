@@ -2,61 +2,74 @@
 
 Laboratorio práctico de Security Operations Center (SOC) orientado a Blue Team, diseñado para simular un entorno empresarial real y entrenar tareas de detección, análisis y respuesta a incidentes.
 
-🎯 Objectives
+El laboratorio reproduce una infraestructura simplificada basada en Wazuh (SIEM/XDR) y endpoints Linux monitorizados.
 
-Simulate a realistic SOC environment
+🏢 Infraestructura simulada
 
-Practice detection engineering and event correlation
+🔐 SIEM (Wazuh)
 
-Align scenarios with MITRE ATT&CK
+🖥 Endpoints Linux
 
-Build a technical Blue Team portfolio
+🌐 Servicios simulados
 
-Validate full monitoring pipeline
+⚙ Generación controlada de eventos
+
+🎯 Casos de uso alineados con MITRE ATT&CK
+
+🎯 Objetivos del laboratorio
+
+Simular un SOC realista basado en herramientas open-source
+
+Practicar detección, análisis y respuesta a incidentes
+
+Documentar casos reales alineados con MITRE ATT&CK
+
+Construir un portfolio técnico demostrable en GitHub
+
+Validar el pipeline completo:
 
 Agent → Manager → Indexer → Dashboard
 
-🏗 Architecture Overview
+🏗 Arquitectura (alto nivel)
 
 Wazuh SIEM (Manager + Indexer + Dashboard)
 
 Ubuntu Endpoint (Wazuh Agent)
 
-Kali Linux (Attacker machine)
+Kali Linux (máquina atacante)
 
-Controlled attack simulations
+Generación controlada de eventos
 
-Structured documentation per scenario
+Documentación estructurada por escenarios
 
 🔴 Attack Scenarios
-A01 – Nmap Reconnaissance
+🔎 A01 – Nmap Reconnaissance
 
-Objective
-Generate reconnaissance traffic against the monitored endpoint.
+Objetivo:
+Generar tráfico de reconocimiento contra el endpoint monitorizado.
 
-Command
+Comando utilizado (Kali):
 
 sudo nmap -sS -sV -O -Pn -T3 192.168.100.235
 
 
-MITRE Mapping
+MITRE Mapping:
 T1046 – Network Service Discovery
 https://attack.mitre.org/techniques/T1046/
 
-Detection Notes
-SYN scans may generate limited host-side logs because the TCP handshake is not fully completed.
+Nota técnica:
+Los SYN scans (-sS) pueden generar registros limitados en el host porque el handshake TCP no se completa.
 
-A02 – SSH Brute Force Detection
+🔥 A02 – SSH Brute Force Detection
 
-Objective
-Simulate repeated SSH authentication attempts using a non-existent user.
+Objetivo:
+Simular intentos repetidos de autenticación SSH usando un usuario inexistente.
 
-Command
+Comando utilizado (Kali):
 
 for i in {1..10}; do ssh fakeuser@192.168.100.235; done
 
-
-Wazuh Alerts Observed
+🛡 Alertas detectadas en Wazuh
 
 Rule 5710 – Attempt to login using a non-existent user (Level 5)
 
@@ -64,35 +77,35 @@ Rule 5503 – PAM: User login failed (Level 5)
 
 Rule 2502 – Multiple password failures (Level 10)
 
-MITRE Mapping
+MITRE Mapping:
 T1110 – Brute Force
 https://attack.mitre.org/techniques/T1110/
 
-📊 Detection Summary
-ID	Scenario	Severity	MITRE
-A01	Reconnaissance	Low	T1046
-A02	SSH Brute Force	High	T1110
-🧠 Skills Demonstrated
+📊 Resumen de detección
+ID	Escenario	Severidad	MITRE
+A01	Reconocimiento Nmap	Baja	T1046
+A02	Fuerza bruta SSH	Alta	T1110
+🧠 Capacidades demostradas
 
-SSH & PAM log analysis
+Análisis de logs (sshd, PAM)
 
-Event correlation
+Correlación de eventos
 
-Alert severity escalation
+Escalado de severidad (Level 5 → Level 10)
 
-Threat hunting in OpenSearch / Wazuh
+Threat hunting en OpenSearch / Wazuh
 
-MITRE ATT&CK mapping
+Mapeo MITRE ATT&CK
 
-Structured security documentation
+Documentación estructurada de incidentes
 
-Git workflow management
+Gestión de versiones con Git
 
-🚀 Next Planned Scenarios
+🚀 Próximos escenarios
 
 A03 – Hydra brute force simulation
 
-A04 – File Integrity Monitoring detection
+A04 – File Integrity Monitoring (FIM) detection
 
 A05 – Privilege escalation simulation
 
@@ -102,6 +115,6 @@ A07 – Persistence technique simulation
 
 A08 – Custom Wazuh rule creation
 
-📌 About
+📌 Sobre este proyecto
 
-This repository reflects my practical training path as a SOC Analyst / Blue Team specialist, focused on detection engineering and real-world monitoring simulations.
+Este repositorio forma parte de mi evolución profesional como SOC Analyst / Blue Team specialist, enfocado en detección, correlación y monitorización de eventos en entornos reales simulados.
