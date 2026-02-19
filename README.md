@@ -44,6 +44,60 @@ Laboratorio práctico de **Security Operations Center (SOC)** orientado a **Blue
 
 ---
 
+
+## 🗺️ Architecture Diagram (Logical View)
+
+                     ┌────────────────────────────┐
+                     │        🛡️ WAZUH MANAGER      │
+                     │  (Manager + Indexer + UI)   │
+                     │                              │
+                     │  - Log analysis              │
+                     │  - Rule correlation          │
+                     │  - MITRE mapping             │
+                     └──────────────┬───────────────┘
+                                    │
+                                    │ Secure Log Forwarding
+                                    │ (Agent → Manager)
+                                    │
+        ┌───────────────────────────┼───────────────────────────┐
+        │                           │                           │
+        │                           │                           │
+┌───────────────┐          ┌──────────────────┐        ┌─────────────────┐
+│ 🐧 Ubuntu VM   │          │ 🔥 Kali Linux VM │        │ 📊 Dashboard UI │
+│ (Wazuh Agent)  │          │ (Attacker)       │        │ (Threat Hunting)│
+│                 │          │                  │        │                 │
+│ - SSH Service   │◄─────────┤ - Nmap           │        │ - Event search  │
+│ - PAM Logs      │  Traffic  │ - Brute force    │        │ - Rule IDs      │
+│ - System Logs   │          │ - Enumeration     │        │ - MITRE view    │
+└───────────────┘          └──────────────────┘        └─────────────────┘
+
+---
+
+# 🎯 ¿Por qué este diagrama funciona?
+
+- Está centrado
+- Tiene flujo claro (Attacker → Target → SIEM)
+- No está sobrecargado
+- Representa roles reales SOC
+- Se entiende en 5 segundos
+
+---
+
+# 💎 Si quieres versión aún más elegante
+
+Podemos añadir etiquetas tipo:
+
+Attack Flow:
+Kali → Ubuntu Agent → Wazuh Manager → Detection → Analysis
+
+
+o incluir niveles:
+
+Layer 1: Attacker
+Layer 2: Endpoint
+Layer 3: SIEM
+Layer 4: Analyst
+---
 # 🔴 Attack Scenarios
 
 ---
