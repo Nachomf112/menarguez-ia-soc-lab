@@ -1,4 +1,3 @@
-📌 Copia y pega ESTE README (versión mejorada y espaciada)
 🛡 Menarguez-IA SOC Lab
 
 Laboratorio práctico de Security Operations Center (SOC) orientado a Blue Team, diseñado para simular un entorno empresarial real y entrenar tareas de detección, análisis y respuesta a incidentes.
