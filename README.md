@@ -4,6 +4,7 @@
 ![Blue Team](https://img.shields.io/badge/Focus-Blue%20Team-blueviolet)
 ![Status](https://img.shields.io/badge/Status-Active-success)
 
+Hands-on Blue Team lab simulating real-world detection scenarios aligned with MITRE ATT&CK.
 
 Laboratorio práctico de **Security Operations Center (SOC)** orientado a **Blue Team**, diseñado para simular un entorno empresarial real y entrenar tareas de detección, análisis y respuesta a incidentes.
 
