@@ -81,10 +81,6 @@ Kali (Attack)
 
 ---
 
-
-
----
-
 # 🎯 ¿Por qué este diagrama funciona?
 
 - Está centrado
@@ -111,6 +107,16 @@ Layer 3: SIEM
 Layer 4: Analyst
 ---
 # 🔴 Attack Scenarios
+
+---
+
+## 📸 Evidencias (Wazuh)
+
+### Dashboard overview
+![Wazuh dashboard overview](docs/images/dashboard_overview.png)
+
+### Detección SSH brute force (A02)
+![SSH brute force detection in Wazuh](docs/images/ssh_bruteforce_detection.png)
 
 ---
 
