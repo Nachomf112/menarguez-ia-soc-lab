@@ -1,0 +1,22 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+*.log
+
+# Secrets / env
+.env
+*.key
+*.pem
+*.crt
+*.p12
+
+# Docker volumes / data
+wazuh/**/data/
+wazuh/**/volumes/
+wazuh/**/wazuh-docker/**/config/wazuh_indexer_ssl_certs/
+
+# Large exports
+evidence/exports/*.json
+evidence/exports/*.ndjson
