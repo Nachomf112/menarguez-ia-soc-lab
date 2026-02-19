@@ -47,29 +47,41 @@ Laboratorio práctico de **Security Operations Center (SOC)** orientado a **Blue
 
 ## 🗺️ Architecture Diagram (Logical View)
 
-                     ┌────────────────────────────┐
-                     │        🛡️ WAZUH MANAGER      │
-                     │  (Manager + Indexer + UI)   │
-                     │                              │
-                     │  - Log analysis              │
-                     │  - Rule correlation          │
-                     │  - MITRE mapping             │
+```
+                     ┌──────────────────────────────┐
+                     │        🛡️ WAZUH MANAGER        │
+                     │  Manager + Indexer + UI      │
+                     │------------------------------│
+                     │  • Log analysis              │
+                     │  • Rule correlation          │
+                     │  • MITRE ATT&CK mapping      │
                      └──────────────┬───────────────┘
                                     │
-                                    │ Secure Log Forwarding
-                                    │ (Agent → Manager)
+                                    │  Encrypted log forwarding
+                                    │  (Wazuh Agent → Manager)
                                     │
         ┌───────────────────────────┼───────────────────────────┐
         │                           │                           │
         │                           │                           │
-┌───────────────┐          ┌──────────────────┐        ┌─────────────────┐
-│ 🐧 Ubuntu VM   │          │ 🔥 Kali Linux VM │        │ 📊 Dashboard UI │
-│ (Wazuh Agent)  │          │ (Attacker)       │        │ (Threat Hunting)│
-│                 │          │                  │        │                 │
-│ - SSH Service   │◄─────────┤ - Nmap           │        │ - Event search  │
-│ - PAM Logs      │  Traffic  │ - Brute force    │        │ - Rule IDs      │
-│ - System Logs   │          │ - Enumeration     │        │ - MITRE view    │
-└───────────────┘          └──────────────────┘        └─────────────────┘
+┌─────────────────┐        ┌─────────────────┐         ┌─────────────────┐
+│ 🐧 Ubuntu Target │        │ 🔥 Kali Attacker│         │ 📊 Analyst View │
+│-----------------│        │-----------------│         │-----------------│
+│ • SSH Service    │◄───────┤ • Nmap          │         │ • Event Search  │
+│ • PAM Logs       │  Scan   │ • Brute Force   │         │ • Rule IDs      │
+│ • System Logs    │        │ • Enumeration    │         │ • MITRE Mapping │
+└─────────────────┘        └─────────────────┘         └─────────────────┘
+```
+
+### 🔎 Logical Flow
+
+Kali (Attack)  
+→ Ubuntu Endpoint (Logs generated)  
+→ Wazuh Manager (Detection & Correlation)  
+→ Analyst Dashboard (Threat Hunting)
+
+---
+
+
 
 ---
 
