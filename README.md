@@ -1,96 +1,63 @@
+📌 Copia y pega ESTE README (versión mejorada y espaciada)
 🛡 Menarguez-IA SOC Lab
 
 Laboratorio práctico de Security Operations Center (SOC) orientado a Blue Team, diseñado para simular un entorno empresarial real y entrenar tareas de detección, análisis y respuesta a incidentes.
 
-Este laboratorio reproduce una infraestructura simplificada de empresa utilizando Wazuh (SIEM/XDR) y endpoints Linux monitorizados.
+🎯 Objectives
 
-🎯 Objetivos del laboratorio
+Simulate a realistic SOC environment
 
-Simular un SOC realista basado en herramientas open-source
+Practice detection engineering and event correlation
 
-Practicar detección, análisis y correlación de eventos
+Align scenarios with MITRE ATT&CK
 
-Documentar casos reales alineados con MITRE ATT&CK
+Build a technical Blue Team portfolio
 
-Construir un portfolio técnico demostrable en GitHub
+Validate full monitoring pipeline
 
-Validar el pipeline completo:
 Agent → Manager → Indexer → Dashboard
 
-🏗 Arquitectura (alto nivel)
+🏗 Architecture Overview
 
 Wazuh SIEM (Manager + Indexer + Dashboard)
 
-Endpoint Linux (Ubuntu) con Wazuh Agent
+Ubuntu Endpoint (Wazuh Agent)
 
-Máquina atacante (Kali Linux)
+Kali Linux (Attacker machine)
 
-Generación controlada de eventos de seguridad
+Controlled attack simulations
 
-Documentación estructurada por escenarios
+Structured documentation per scenario
 
-🔴 Attack Scenarios & Detection Summary
-ID	Attack Scenario	Detection Rules Observed	Severity	MITRE ATT&CK
-A01	Nmap Reconnaissance	Limited host-side logs	Low	T1046
-A02	SSH Brute Force	5710, 5503, 2502	High	T1110
-🧠 Detection Capabilities Demonstrated
+🔴 Attack Scenarios
+A01 – Nmap Reconnaissance
 
-SSH authentication monitoring
-
-PAM log ingestion and parsing
-
-Brute force correlation
-
-Severity escalation (Level 5 → Level 10)
-
-Non-existent user detection
-
-SOC workflow validation
-
-📁 Project Structure
-menarguez-ia-soc-lab/
-│
-├── attacks/
-│   ├── A01_Nmap_Recon/
-│   │   ├── nmap_ubuntu_agent.txt
-│   │   └── README.md
-│   │
-│   └── A02_SSH_BruteForce/
-│       ├── README.md
-│       └── evidence/
-│
-├── wazuh/
-├── docs/
-└── README.md
-
-🔎 A01 – Nmap Reconnaissance
-
-Objective:
+Objective
 Generate reconnaissance traffic against the monitored endpoint.
 
-Command used (Kali):
+Command
 
 sudo nmap -sS -sV -O -Pn -T3 192.168.100.235
 
 
-Technical Note:
-SYN scans (-sS) may generate limited host logs because the TCP handshake is not fully completed.
-
-MITRE Mapping:
+MITRE Mapping
 T1046 – Network Service Discovery
 https://attack.mitre.org/techniques/T1046/
 
-🔥 A02 – SSH Brute Force Detection
+Detection Notes
+SYN scans may generate limited host-side logs because the TCP handshake is not fully completed.
 
-Objective:
+A02 – SSH Brute Force Detection
+
+Objective
 Simulate repeated SSH authentication attempts using a non-existent user.
 
-Attack Command (Kali):
+Command
 
 for i in {1..10}; do ssh fakeuser@192.168.100.235; done
 
 
-Detected Rules (Wazuh):
+Wazuh Alerts Observed
 
 Rule 5710 – Attempt to login using a non-existent user (Level 5)
 
@@ -98,31 +65,35 @@ Rule 5503 – PAM: User login failed (Level 5)
 
 Rule 2502 – Multiple password failures (Level 10)
 
-MITRE Mapping:
+MITRE Mapping
 T1110 – Brute Force
 https://attack.mitre.org/techniques/T1110/
 
-📊 Skills Demonstrated
+📊 Detection Summary
+ID	Scenario	Severity	MITRE
+A01	Reconnaissance	Low	T1046
+A02	SSH Brute Force	High	T1110
+🧠 Skills Demonstrated
 
-Log analysis (auth.log, sshd, PAM)
+SSH & PAM log analysis
 
 Event correlation
 
-Alert severity interpretation
+Alert severity escalation
 
-Threat hunting using OpenSearch / Wazuh
+Threat hunting in OpenSearch / Wazuh
 
 MITRE ATT&CK mapping
 
-Security documentation best practices
+Structured security documentation
 
-Git workflow (structured commits, version control)
+Git workflow management
 
 🚀 Next Planned Scenarios
 
 A03 – Hydra brute force simulation
 
-A04 – File Integrity Monitoring (FIM) detection
+A04 – File Integrity Monitoring detection
 
 A05 – Privilege escalation simulation
 
@@ -132,6 +103,6 @@ A07 – Persistence technique simulation
 
 A08 – Custom Wazuh rule creation
 
-📌 About This Project
+📌 About
 
-This repository is part of my continuous development as a SOC Analyst / Blue Team specialist, focused on practical detection engineering and security monitoring.
+This repository reflects my practical training path as a SOC Analyst / Blue Team specialist, focused on detection engineering and real-world monitoring simulations.
