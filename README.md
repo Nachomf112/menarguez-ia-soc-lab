@@ -33,6 +33,7 @@ Laboratorio práctico de **Security Operations Center (SOC)** orientado a **Blue
 ---
 
 ## 🏗 Arquitectura (alto nivel)
+## 🔎 Attack Scenarios
 
 - Wazuh SIEM (Manager + Indexer + Dashboard)
 - Ubuntu Endpoint (Wazuh Agent)
