@@ -33,6 +33,16 @@ Laboratorio práctico de **Security Operations Center (SOC)** orientado a **Blue
 ---
 
 ## 🏗 Arquitectura (alto nivel)
+
+
+- Wazuh SIEM (Manager + Indexer + Dashboard)
+- Ubuntu Endpoint (Wazuh Agent)
+- Kali Linux (Attacker Machine)
+- Generación controlada de eventos
+- Documentación estructurada por escenarios
+
+---
+
 ## 🔎 Attack Scenarios
 
 🎯 Objective
@@ -110,19 +120,6 @@ Layer 4: Analyst
 
 ---
 
-## 📸 Evidencias (Wazuh)
-
-### Architecture_diagram.png
-![architecture_diagram.png](docs/images/architecture_diagram.png)
-
-### Dashboard overview
-![Wazuh dashboard overview](docs/images/dashboard_overview.png)
-
-### Detección SSH brute force (A02)
-![SSH brute force detection in Wazuh](docs/images/ssh_bruteforce_detection.png)
-
----
-
 ## 🔎 A01 – Nmap Reconnaissance
 
 **Objetivo:**  
@@ -141,6 +138,8 @@ T1046 – Network Service Discovery
 
 Los SYN scans (-sS) pueden generar registros limitados en el host porque el handshake TCP no se completa.
 
+---
+
 🔥 A02 – SSH Brute Force Detection
 
 Objetivo:
@@ -156,6 +155,21 @@ Rule 5710 → Attempt to login using a non-existent user (Level 5)
 Rule 5503 → PAM: User login failed (Level 5)
 
 Rule 2502 → Multiple password failures (Level 10)
+
+---
+
+## 📸 Evidencias (Wazuh)
+
+### Architecture_diagram.png
+![architecture_diagram.png](docs/images/architecture_diagram.png)
+
+### Dashboard overview
+![Wazuh dashboard overview](docs/images/dashboard_overview.png)
+
+### Detección SSH brute force (A02)
+![SSH brute force detection in Wazuh](docs/images/ssh_bruteforce_detection.png)
+
+---
 
 🎯 MITRE Mapping
 
