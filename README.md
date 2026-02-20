@@ -1,4 +1,5 @@
 # 🛡 Menarguez-IA SOC Lab
+
 ![Wazuh](https://img.shields.io/badge/SIEM-Wazuh-blue)
 ![MITRE ATT&CK](https://img.shields.io/badge/MITRE-ATT%26CK-red)
 ![Blue Team](https://img.shields.io/badge/Focus-Blue%20Team-blueviolet)
@@ -6,58 +7,48 @@
 
 > Hands-on Blue Team lab simulating real-world detection scenarios aligned with MITRE ATT&CK.
 
-Laboratorio práctico de **Security Operations Center (SOC)** orientado a **Blue Team**, diseñado para simular un entorno empresarial real y entrenar tareas de detección, análisis y respuesta a incidentes.
+Laboratorio práctico de **Security Operations Center (SOC)** orientado a **Blue Team**, diseñado para simular un entorno empresarial real y entrenar tareas de **detección**, **análisis** y **respuesta** a incidentes.
 
 ---
 
 ## 🏢 Infraestructura simulada
 
-- 🔐 SIEM (Wazuh)
-- 🖥 Endpoints Linux (Ubuntu + Wazuh Agent)
-- ⚔ Kali Linux (máquina atacante)
-- 🌐 Servicios simulados (SSH, sistema)
-- ⚙ Generación controlada de eventos
-- 🎯 Casos de uso alineados con MITRE ATT&CK
+- 🔐 SIEM: **Wazuh**
+- 🖥 Endpoint monitorizado: **Ubuntu + Wazuh Agent**
+- ⚔ Máquina atacante: **Kali Linux**
+- 🌐 Servicio simulado principal: **SSH**
+- ⚙ Generación controlada de eventos y telemetría
+- 🎯 Casos de uso alineados con **MITRE ATT&CK**
 
 ---
 
 ## 🎯 Objetivos del laboratorio
 
-- Simular un SOC realista basado en herramientas open-source
-- Practicar detección, análisis y respuesta a incidentes
-- Documentar casos reales alineados con MITRE ATT&CK
+- Simular un SOC realista basado en herramientas **open-source**
+- Practicar **detección**, **análisis**, **correlación** y **respuesta**
+- Documentar casos reales alineados con **MITRE ATT&CK**
 - Construir un portfolio técnico demostrable en GitHub
-- Validar el pipeline completo:
-
+- Validar un flujo completo: **Attack → Logs → SIEM → Hunting → Evidence**
 
 ---
 
 ## 🏗 Arquitectura (alto nivel)
 
-
-- Wazuh SIEM (Manager + Indexer + Dashboard)
-- Ubuntu Endpoint (Wazuh Agent)
-- Kali Linux (Attacker Machine)
-- Generación controlada de eventos
-- Documentación estructurada por escenarios
+- **Wazuh SIEM** (Manager + Indexer + Dashboard)
+- **Ubuntu Endpoint** (Wazuh Agent + logs de sshd/PAM/system)
+- **Kali Attacker** (Nmap + generación de intentos SSH)
+- Evidencias y documentación por escenario (A01, A02, …)
 
 ---
-
-## 🔎 Attack Scenarios
-
-🎯 Objective
-🖥 Command executed
-📊 Detection observed (Rule IDs)
-🧠 MITRE Mapping
-📈 Analysis
-🛡 Response considerations
-
----
-
 
 ## 🗺️ Architecture Diagram (Logical View)
 
-```
+### ✅ Visual (screenshot)
+![Architecture diagram](docs/images/architecture_diagram.png)
+
+### ✅ ASCII (para lectura rápida)
+
+```text
                      ┌──────────────────────────────┐
                      │        🛡️ WAZUH MANAGER      │
                      │  Manager + Indexer + UI      │
@@ -72,130 +63,122 @@ Laboratorio práctico de **Security Operations Center (SOC)** orientado a **Blue
                                     │
         ┌───────────────────────────┼───────────────────────────┐
         │                           │                           │
-        │                           │                           │
 ┌─────────────────┐        ┌─────────────────┐         ┌─────────────────┐
-│ 🐧 Ubuntu Target│        │ 🔥 Kali Attacker│        │ 📊 Analyst View │
+│ 🐧 Ubuntu Target│        │ 🔥 Kali Attacker│        │ 📊 Analyst View  │
 │-----------------│        │-----------------│        │------------------│
-│ • SSH Service   │◄───────┤ • Nmap          │        │ • Event Search   │
-│ • PAM Logs      │  Scan  │ • Brute Force   │        │ • Rule IDs       │
+│ • SSH Service   │◄───────┤ • Nmap          │        │ • Threat Hunting │
+│ • PAM Logs      │  Scan  │ • SSH Attempts  │        │ • Rule IDs       │
 │ • System Logs   │        │ • Enumeration   │        │ • MITRE Mapping  │
 └─────────────────┘        └─────────────────┘         └─────────────────┘
-```
 
-### 🔎 Logical Flow
+---
 
-Kali (Attack)  
-→ Ubuntu Endpoint (Logs generated)  
-→ Wazuh Manager (Detection & Correlation)  
+🔎 Logical Flow
+
+Kali (Attack)
+→ Ubuntu Endpoint (Logs generated)
+→ Wazuh Manager (Detection & Correlation)
 → Analyst Dashboard (Threat Hunting)
 
----
+🔎 Attack Scenarios
 
-# 🎯 ¿Por qué este diagrama funciona?
+Legend: 🎯 Objective · 🖥 Command · 📊 Detection (Rule IDs) · 🧠 MITRE · 📈 Analysis · 🛡 Response
 
-- Está centrado
-- Tiene flujo claro (Attacker → Target → SIEM)
-- No está sobrecargado
-- Representa roles reales SOC
-- Se entiende en 5 segundos
+🔍 A01 – Nmap Reconnaissance
 
----
-
-# 💎 Si quieres versión aún más elegante
-
-Podemos añadir etiquetas tipo:
-
-Attack Flow:
-Kali → Ubuntu Agent → Wazuh Manager → Detection → Analysis
-
-
-o incluir niveles:
-
-Layer 1: Attacker
-Layer 2: Endpoint
-Layer 3: SIEM
-Layer 4: Analyst
----
-# 🔴 Attack Scenarios
-
----
-
-## 🔎 A01 – Nmap Reconnaissance
-
-**Objetivo:**  
+🎯 Objective
 Generar tráfico de reconocimiento contra el endpoint monitorizado.
 
-### 🖥 Comando utilizado (Kali)
+🖥 Command executed (Kali)
 
-```bash
 sudo nmap -sS -sV -O -Pn -T3 192.168.100.235
 
-🎯 MITRE Mapping
+🧠 MITRE Mapping
 
 T1046 – Network Service Discovery
+Referencia oficial: https://attack.mitre.org/techniques/T1046/
 
-📝 Nota técnica
-
+📈 Analysis
 Los SYN scans (-sS) pueden generar registros limitados en el host porque el handshake TCP no se completa.
+Referencia Nmap (fuente oficial): https://nmap.org/book/man-host-discovery.html
 
----
+📁 Documentation / evidence
 
-🔥 A02 – SSH Brute Force Detection
+attacks/A01_Nmap_Recon/README.md
 
-Objetivo:
-Simular intentos repetidos de autenticación SSH usando un usuario inexistente.
+attacks/A01_Nmap_Recon/nmap_ubuntu_agent.txt
 
-🖥 Comando utilizado (Kali)
+🔥 A02 – SSH Brute Force Detection (non-existent user)
+
+🎯 Objective
+Simular intentos repetidos de autenticación SSH usando un usuario inexistente y validar detección/correlación en Wazuh.
+
+🖥 Command executed (Kali)
+
 for i in {1..10}; do ssh fakeuser@192.168.100.235; done
 
-🛡 Alertas detectadas en Wazuh
+📊 Detection observed (Wazuh Rule IDs)
 
-Rule 5710 → Attempt to login using a non-existent user (Level 5)
+5710 → Attempt to login using a non-existent user (Level 5)
 
-Rule 5503 → PAM: User login failed (Level 5)
+5503 → PAM: User login failed (Level 5)
 
-Rule 2502 → Multiple password failures (Level 10)
+2502 → Multiple password failures (Level 10)
 
----
-
-## 📸 Evidencias (Wazuh)
-
-### Architecture_diagram.png
-![architecture_diagram.png](docs/images/architecture_diagram.png)
-
-### Dashboard overview
-![Wazuh dashboard overview](docs/images/dashboard_overview.png)
-
-### Detección SSH brute force (A02)
-![SSH brute force detection in Wazuh](docs/images/ssh_bruteforce_detection.png)
-
----
-
-🎯 MITRE Mapping
+🧠 MITRE Mapping
 
 T1110 – Brute Force
+Referencia oficial: https://attack.mitre.org/techniques/T1110/
 
-📊 Resumen de detección
-ID	Escenario	Severidad	MITRE
-A01	Reconocimiento Nmap	Baja	T1046
-A02	Fuerza bruta SSH	Alta	T1110
-🧠 Capacidades demostradas
+📈 Analysis
+Este escenario demuestra:
 
-📄 Análisis de logs (sshd, PAM)
+generación de logs en sshd y PAM
 
-🔎 Correlación de eventos
+detección por reglas
+
+aumento de severidad al repetirse fallos (escalado)
+
+🛡 Response considerations (SOC)
+
+identificar origen (IP) y patrón temporal
+
+revisar si hay intentos sobre múltiples usuarios
+
+aplicar hardening (Fail2Ban, rate-limits, MFA si aplica, bloqueo por firewall)
+
+buscar actividad posterior (movimiento lateral, sudo, persistencia)
+
+📁 Documentation / evidence
+
+attacks/A02_SSH_BruteForce/README.md
+
+📸 Detection Evidence (Wazuh)
+Dashboard overview
+
+SSH brute force detection (A02)
+
+📊 Detection Summary
+ID	Scenario	Severity	MITRE
+A01	Nmap Reconnaissance	Low	T1046
+A02	SSH Brute Force (invalid)	High	T1110
+🧠 Capabilities Demonstrated
+
+📄 Log analysis (sshd, PAM, syslog)
+
+🔎 Threat hunting in OpenSearch / Wazuh
+
+🧩 Correlación de eventos y reglas
 
 🚨 Escalado de severidad (Level 5 → Level 10)
 
-🧭 Threat hunting en OpenSearch / Wazuh
+🎯 MITRE ATT&CK mapping
 
-🎯 Mapeo MITRE ATT&CK
+📚 Documentación estructurada por escenarios
 
-📚 Documentación estructurada de incidentes
+🛠 Gestión de versiones con Git (commits, historial, evidencias)
 
-🛠 Gestión de versiones con Git
-
-🚀 Próximos escenarios
+🚀 Upcoming Scenarios
 
 A03 – Hydra brute force simulation
 A04 – File Integrity Monitoring (FIM) detection
@@ -204,8 +187,27 @@ A06 – Reverse shell detection
 A07 – Persistence technique simulation
 A08 – Custom Wazuh rule creation
 
-📌 Sobre este proyecto
+📌 Professional Context
 
 Este repositorio forma parte de mi evolución profesional como SOC Analyst / Blue Team Specialist, enfocado en detección, correlación y monitorización de eventos en entornos simulados.
 
 Proyecto desarrollado dentro del ecosistema Menarguez-IA Solutions.
+
+
+---
+
+## Importante (para que las imágenes se vean)
+Tienen que existir exactamente estas rutas en tu repo:
+
+- `docs/images/architecture_diagram.png`
+- `docs/images/dashboard_overview.png`
+- `docs/images/ssh_bruteforce_detection.png`
+
+En tu captura ya veo que las tienes en `docs/images/`, perfecto.
+
+---
+
+## Y sobre “A01 cuál era”
+✅ A01 es el **Nmap Reconnaissance**, el escenario de reconocimiento contra `192.168.100.235`.
+
+---
