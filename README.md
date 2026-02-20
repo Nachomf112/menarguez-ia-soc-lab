@@ -1,4 +1,5 @@
 # 🛡 Menarguez-IA SOC Lab
+> Detection Engineering | Threat Hunting | MITRE ATT&CK | Blue Team Portfolio
 
 ![Wazuh](https://img.shields.io/badge/SIEM-Wazuh-blue)
 ![MITRE ATT&CK](https://img.shields.io/badge/MITRE-ATT%26CK-red)
